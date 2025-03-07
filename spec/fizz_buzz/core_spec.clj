@@ -15,8 +15,18 @@
     (should= "FizzBuzz" (fizz-buzz 15))
     (should= "FizzBuzz" (fizz-buzz 30)))
 
+  (it "returns the first factor it is divisible by for n"
+    (should= 15 (get-factor 15))
+    (should= 3 (get-factor 9))
+    (should= 5 (get-factor 5))
+    (should= nil (get-factor 7))
+    (should= nil (get-factor 11))
+    )
+
+  (it "gets FizzBuzz to n"
+   (should= '(1 2 "Fizz" 4 "Buzz" "Fizz" 7 8 "Fizz" "Buzz" 11 "Fizz" 13 14 "FizzBuzz") (fizz-buzz-to-n 15)))
 
   (it "prints fizzbuzz"
-    (should="(1 2 Fizz)" (with-out-str (print-fizz-buzz 3))))
+    (should= "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n" (with-out-str (-main))))
     )
 

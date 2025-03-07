@@ -1,14 +1,22 @@
 (ns fizz-buzz.core)
 
-(defn fizz-buzz [n]
-  (cond (= 0 (rem n 15)) "FizzBuzz"
-        (= 0 (rem n 3)) "Fizz"
-        (= 0 (rem n 5)) "Buzz"
-        :else n))
+(def special-rules
+  {15 "FizzBuzz", 3 "Fizz", 5 "Buzz"})
 
-(defn print-fizz-buzz [n]
-  (->> n
-       inc
-       (range 1)
-       (map #(fizz-buzz %))
-       print))
+(defn divisible-by? [n factor]
+  (= 0 (rem n factor)))
+
+(defn get-factor [n]
+  (first (filter #(divisible-by? n %) (sort > (keys special-rules)))))
+
+(defn fizz-buzz [n]
+  (if-let [special-number (get-factor n)]
+    (get special-rules special-number)
+    n))
+
+(defn fizz-buzz-to-n [n]
+  (->> (range 1 (inc n))
+       (map #(fizz-buzz %))))
+
+(defn -main []
+   (run! println(fizz-buzz-to-n 15)))
