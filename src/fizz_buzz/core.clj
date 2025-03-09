@@ -18,5 +18,5 @@
   (->> (range 1 (inc n))
        (map #(fizz-buzz %))))
 
-(defn -main []
-   (run! println(fizz-buzz-to-n 15)))
+(defn -main [n]
+   (run! println(fizz-buzz-to-n (Integer/parseInt n))))
